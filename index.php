@@ -18,14 +18,6 @@ function fetchPokemonData($id) {
     return json_decode($response, true);
 }
 
-// Cargar los primeros 10 Pokémon
-for ($i = 1; $i <= 10; $i++) {
-    $pokemon = fetchPokemonData($i);
-    if (!in_array($pokemon['name'], $hiddenPokemons)) {
-        $pokemons[] = $pokemon;
-    }
-}
-
 // Manejar acciones del usuario: likes y ocultar Pokémon
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['like'])) {
@@ -36,6 +28,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pokemonName = $_POST['pokemon_name'];
         $hiddenPokemons[] = $pokemonName;
         $_SESSION['hiddenPokemons'] = $hiddenPokemons;
+    }
+}
+
+// Obtener el número de Pokémon a cargar desde la URL (paginación)
+$page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1; // Página actual
+$limit = 50; // Número de Pokémon por página
+$start = ($page - 1) * $limit + 1; // ID inicial del Pokémon
+$end = $start + $limit - 1; // ID final del Pokémon
+
+// Cargar los Pokémon correspondientes a la página actual
+for ($i = $start; $i <= $end; $i++) {
+    $pokemon = fetchPokemonData($i);
+    if (!in_array($pokemon['name'], $hiddenPokemons)) {
+        $pokemons[] = $pokemon;
     }
 }
 ?>
@@ -74,6 +80,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         <?php endforeach; ?>
     </main>
+
+    <!-- Botón para cargar más Pokémon -->
+    <div class="load-more">
+        <a href="?page=<?= $page + 1 ?>" class="md-button md-button--filled">Cargar Más Pokémon</a>
+    </div>
 
     <!-- Enlace para ver comentarios -->
     <div class="comments-link">
