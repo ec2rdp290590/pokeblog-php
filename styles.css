@@ -1,0 +1,136 @@
+/* Variables de Color Material Design 3 */
+:root {
+    --md-sys-color-primary: #6750A4;
+    --md-sys-color-on-primary: #FFFFFF;
+    --md-sys-color-secondary: #625B71;
+    --md-sys-color-on-secondary: #FFFFFF;
+    --md-sys-color-background: #F5F5F5;
+    --md-sys-color-surface: #FFFFFF;
+    --md-sys-color-on-surface: #1C1B1F;
+    --md-sys-color-outline: #79747E;
+}
+
+/* Reset y Base */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: var(--md-sys-color-background);
+    color: var(--md-sys-color-on-surface);
+}
+
+/* Barra de Navegación */
+.md-header {
+    background: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+    padding: 20px;
+    text-align: center;
+}
+
+.md-header h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.md-header p {
+    font-size: 1rem;
+    margin: 5px 0 0;
+}
+
+/* Grid de Pokémon */
+.pokemon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    background: var(--md-sys-color-surface);
+    border: 1px solid var(--md-sys-color-outline);
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.card h2 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+/* Botones Material Design */
+.md-button {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.md-button--filled {
+    background: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+}
+
+.md-button--outlined {
+    background: transparent;
+    color: var(--md-sys-color-primary);
+    border: 1px solid var(--md-sys-color-primary);
+}
+
+.md-button--text {
+    background: transparent;
+    color: var(--md-sys-color-primary);
+}
+
+.md-button:hover {
+    opacity: 0.9;
+}
+
+/* Modal */
+.md-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.md-modal__content {
+    background: var(--md-sys-color-surface);
+    padding: 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .pokemon-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .md-header h1 {
+        font-size: 1.5rem;
+    }
+}
